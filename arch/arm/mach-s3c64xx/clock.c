@@ -788,6 +788,7 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_src	= { .reg = S3C_CLK_SRC, .shift = 24, .size = 2  },
 		.reg_div	= { .reg = S3C_CLK_DIV2, .shift = 20, .size = 4  },
 		.sources	= &clkset_irda,
+#if 0 // HACK_ORG
 	}, {
 		.clk	= {
 			.name		= "camera",
@@ -798,6 +799,7 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_div	= { .reg = S3C_CLK_DIV0, .shift = 20, .size = 4  },
 		.reg_src	= { .reg = NULL, .shift = 0, .size = 0  },
 		.sources	= &clkset_camif,
+#endif
 	},
 };
 
