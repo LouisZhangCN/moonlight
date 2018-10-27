@@ -41,6 +41,17 @@ export LC_COLLATE LC_NUMERIC
 # To put more focus on warnings, be less verbose as default
 # Use 'make V=1' to see the full commands
 
+# <louis's comment>:
+# refer website: https://blog.csdn.net/linuxarmsummary/article/details/19111329
+# origin function return value:
+# 1.undefined
+# 2.environment
+# 3.default
+# 4.file
+# 5.command line
+# 6.override
+# 7.automatic
+
 ifeq ("$(origin V)", "command line")
   KBUILD_VERBOSE = $(V)
 endif
@@ -68,6 +79,9 @@ endif
 # Use make M=dir to specify directory of external module to build
 # Old syntax make ... SUBDIRS=$PWD is still supported
 # Setting the environment variable KBUILD_EXTMOD take precedence
+#
+#<louis's comment>
+# refer website:https://blog.csdn.net/cupidove/article/details/40921559
 ifdef SUBDIRS
   KBUILD_EXTMOD ?= $(SUBDIRS)
 endif
@@ -110,6 +124,8 @@ endif
 PHONY := _all
 _all:
 
+# <louis's comment>
+# refer website:https://blog.csdn.net/yi412/article/details/48300077
 # Cancel implicit rules on top Makefile
 $(CURDIR)/Makefile Makefile: ;
 
@@ -484,6 +500,7 @@ ifeq ($(config-targets),1)
 include $(srctree)/arch/$(SRCARCH)/Makefile
 export KBUILD_DEFCONFIG KBUILD_KCONFIG
 
+$(warning build=$(build))
 config: scripts_basic outputmakefile FORCE
 	$(Q)mkdir -p include/linux include/config
 	$(Q)$(MAKE) $(build)=scripts/kconfig $@
@@ -530,6 +547,7 @@ $(KCONFIG_CONFIG) include/config/auto.conf.cmd: ;
 # if auto.conf.cmd is missing then we are probably in a cleaned tree so
 # we execute the config step to be sure to catch updated Kconfig files
 include/config/%.conf: $(KCONFIG_CONFIG) include/config/auto.conf.cmd
+	$(warning xxxxxxxxxxxxxxxxxxx)
 	$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 else
 # external modules needs include/generated/autoconf.h and include/config/auto.conf
